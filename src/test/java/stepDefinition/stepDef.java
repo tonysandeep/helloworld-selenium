@@ -8,6 +8,10 @@ import org.openqa.selenium.chrome.ChromeDriver;*/
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import static org.junit.Assert.*;
+import java.net.URL;
+import java.net.MalformedURLException;
+import java.util.concurrent.TimeUnit;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
