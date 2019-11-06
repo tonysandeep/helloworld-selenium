@@ -2,16 +2,16 @@ package stepDefinition;
 
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
+/*import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver; 
-import org.openqa.selenium.chrome.ChromeDriver;
-/*import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;*/
+import org.openqa.selenium.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import static org.junit.Assert.*;
 import java.net.URL;
 import java.net.MalformedURLException;
-import java.util.concurrent.TimeUnit;*/
+import java.util.concurrent.TimeUnit;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -27,16 +27,16 @@ WebDriver driver;
 @Given("^landing page is loaded$")
 public void landing_page_is_loaded() throws Throwable {
     //System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+"\\drivers\\windows\\chromedriver.exe");
-    System.setProperty("webdriver.chrome.driver","/usr/bin/chromedriver");
+    /*System.setProperty("webdriver.chrome.driver","/usr/bin/chromedriver");
     driver = new ChromeDriver(); 
     driver.manage().window().maximize(); 
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); 
-    driver.get("http://34.93.73.51:8080/helloworld/");
-    /*DesiredCapabilities capability = DesiredCapabilities.chrome();
+    driver.get("http://34.93.73.51:8080/helloworld/");*/
+    DesiredCapabilities capability = DesiredCapabilities.chrome();
     driver = new RemoteWebDriver(new URL("http://34.93.120.219:4444/wd/hub"), capability);
     driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-    driver.get("http://34.93.73.51:8080/helloworld/");*/
+    driver.get("http://34.93.73.51:8080/helloworld/");
 }
 
 @Given("^click sign in$")
