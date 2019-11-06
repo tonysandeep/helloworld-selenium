@@ -1,0 +1,6 @@
+parameter:
+  appname: helloworld
+  deployment:
+    strategy: rollingupdate
+    # rollingupdate , bluegreen , canary
+    # default is rollingupdate
