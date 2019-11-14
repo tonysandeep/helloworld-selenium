@@ -1,18 +1,51 @@
 pipeline {
-  agent {
-    node { 
-      label 'master'
-    }
-  }
-  stages {
-    stage('Clone repo') {
-      git(url: 'https://github.com/rakesh635/helloworld-selenium.git', branch: 'master', poll: true)
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Checkout'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Clean Build'
+                bat 'mvn clean compile'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing'
+                bat 'mvn test'
+            }
+        }
+        stage('Package') {
+            steps {
+                echo 'Packaging'
+                bat 'mvn package -DskipTests'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo '## TODO DEPLOYMENT ##'
+            }
+        }
     }
     
-    stage ('Build') {
-      withMaven('maven3.3.9') {
-        sh 'mvn -Dmaven.test.failure.ignore=true install' 
-      }
+    post {
+        always {
+            echo 'JENKINS PIPELINE'
+        }
+        success {
+            echo 'JENKINS PIPELINE SUCCESSFUL'
+        }
+        failure {
+            echo 'JENKINS PIPELINE FAILED'
+        }
+        unstable {
+            echo 'JENKINS PIPELINE WAS MARKED AS UNSTABLE'
+        }
+        changed {
+            echo 'JENKINS PIPELINE STATUS HAS CHANGED SINCE LAST EXECUTION'
+        }
     }
-  }
 }
