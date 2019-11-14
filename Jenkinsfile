@@ -10,7 +10,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Clean Build'
-                
+                    sh "ls"
+                    sh "pwd"
                     sh "mvn clean compile"
                 
             }
