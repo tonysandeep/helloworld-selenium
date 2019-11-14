@@ -1,16 +1,10 @@
 pipeline {
     agent any
     stages {
-        stage('Checkout') {
+        stage('checkout') {
             steps {
-                echo 'Checkout'
-                checkout([
-                    $class: 'GitSCM',
-                    branches: scm.branches,
-                    doGenerateSubmoduleConfigurations: false,
-                    extensions: scm.extensions + [[$class: 'SubmoduleOption', disableSubmodules: false, recursiveSubmodules: true, reference: '', trackingSubmodules: false]],
-                    submoduleCfg: [],
-                    userRemoteConfigs: scm.userRemoteConfigs])
+                echo 'checkout'
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/rakesh635/helloworld-selenium.git']]])
             }
         }
         stage('Build') {
