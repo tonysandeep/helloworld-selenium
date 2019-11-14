@@ -12,8 +12,7 @@ pipeline {
                 echo 'Clean Build'
                     sh "ls"
                     sh "pwd"
-                    sh "mvn clean compile"
-                
+                    sh "mvn sonar:sonar clean compile -Dtest=\\!TestRunner* -DfailIfNoTests=false -Dsonar.projectKey=testprojkey1 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=820f2c6d75600559bd4c27dbc572be2cedcf2ae6"  
             }
         }
         stage('Test') {
