@@ -79,7 +79,7 @@ pipeline {
                     echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
                     artifactPath = filesByGlob[0].path;            
                 }
-                sh "cp target/hello-world-war-1.0.0-SNAPSHOT.war /opt/tomcat/apache-tomcat-8.5.47/webapps"
+                sh "sudo cp target/hello-world-war-1.0.0-SNAPSHOT.war /opt/tomcat/apache-tomcat-8.5.47/webapps"
             }
         }
     }
