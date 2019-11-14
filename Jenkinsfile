@@ -34,6 +34,9 @@ pipeline {
             }
         }
     }
+    tools {
+        maven 'maven3.3.9'
+    }
     
     post {
         always {
