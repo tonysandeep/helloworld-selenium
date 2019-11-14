@@ -9,9 +9,9 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Clean Build'
-                withMaven(maven: 'maven3.3.9') {
+                
                     sh "mvn clean compile"
-                }
+                
             }
         }
         stage('Test') {
