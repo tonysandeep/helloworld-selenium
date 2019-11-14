@@ -1,9 +1,8 @@
 pipeline {
   agent {
-    node {
+    node { 
       label 'master'
     }
-
   }
   stages {
     stage('Check running containers') {
@@ -12,14 +11,17 @@ pipeline {
       }
     }
     stage ('Build') {
-            steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true install' 
-            }
-            post {
-                success {
-                    junit 'target/surefire-reports/**/*.xml' 
-                }
-            }
+      steps {
+        sh 'mvn -Dmaven.test.failure.ignore=true install' 
+      }
+      post {
+        success {
+          junit 'target/surefire-reports/**/*.xml' 
         }
+      }
     }
+    tools {
+      maven 'maven3.3.9'
+    }
+  }
 }
