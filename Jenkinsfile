@@ -4,6 +4,13 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'Checkout'
+                checkout([
+                    $class: 'GitSCM',
+                    branches: scm.branches,
+                    doGenerateSubmoduleConfigurations: false,
+                    extensions: scm.extensions + [[$class: 'SubmoduleOption', disableSubmodules: false, recursiveSubmodules: true, reference: '', trackingSubmodules: false]],
+                    submoduleCfg: [],
+                    userRemoteConfigs: scm.userRemoteConfigs])
             }
         }
         stage('Build') {
