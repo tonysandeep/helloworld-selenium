@@ -80,8 +80,8 @@ pipeline {
                     artifactPath = filesByGlob[0].path;
                     env.ARTIPATH = ${artifactPath}
                     env.ARTIFILE = pom.artifactId
-                    sh "echo $ARTIPATH"
-                    sh "echo $ARTIFILE"
+                    sh "echo "+env.ARTIPATH+""
+                    sh "echo "+env.ARTIFILE+""
                 }
             }
         }
