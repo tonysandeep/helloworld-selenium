@@ -35,8 +35,8 @@ pipeline {
         }
     }
     tools {
-        maven 'maven3.3.9',
-        java 'openjdk8'
+        maven 'maven3.3.9'
+        jdk 'openjdk8'
     }
     
     post {
