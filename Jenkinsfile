@@ -74,10 +74,10 @@ pipeline {
                     artifactPath = filesByGlob[0].path;            
                 }
                 sh "sudo -S cp target/hello-world-war-1.0.0-SNAPSHOT.war /opt/tomcat/apache-tomcat-8.5.47/webapps"*/
-                //sh 'curl --upload-file target/hello-world-war-1.0.0-SNAPSHOT.war "http://tomcat:password@34.93.240.217:8082/manager/text/deploy?path=/hello&update=true"'
-                withCredentials([usernamePassword(credentialsId: 'nexusadmin', passwordVariable: 'pass', usernameVariable: 'user')]) {
-                    sh 'curl --upload-file target/hello-world-war-1.0.0-SNAPSHOT.war "http://${user}:${pass}@34.93.240.217:8082/manager/text/deploy?path=/hello&update=true"'
-                }
+                sh 'curl --upload-file target/hello-world-war-1.0.0-SNAPSHOT.war "http://tomcat:password@34.93.240.217:8082/manager/text/deploy?path=/hello&update=true"'
+                //withCredentials([usernamePassword(credentialsId: 'nexusadmin', passwordVariable: 'pass', usernameVariable: 'user')]) {
+                //    sh 'curl --upload-file target/hello-world-war-1.0.0-SNAPSHOT.war "http://${user}:${pass}@34.93.240.217:8082/manager/text/deploy?path=/hello&update=true"'
+                //}
             }
         }
         stage('Test') {
