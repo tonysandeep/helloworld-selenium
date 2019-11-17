@@ -82,6 +82,8 @@ pipeline {
                   sh 'echo $PASSWORD'
                   echo USERNAME
                   echo "username is $USERNAME"
+                  echo "${env.USERNAME}"
+                  echo "${env.PASSWORD}"
                   sh 'curl --upload-file target/hello-world-war-1.0.0-SNAPSHOT.war "http://$USERNAME:$PASSWORD@34.93.240.217:8082/manager/text/deploy?path=/hello&update=true"'
                 }
             }
