@@ -71,7 +71,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo '## TODO DEPLOYMENT ##'
+                /*echo '## TODO DEPLOYMENT ##'
                 script {
                     // Read POM xml file using 'readMavenPom' step , this step 'readMavenPom' is included in: https://plugins.jenkins.io/pipeline-utility-steps
                     pom = readMavenPom file: "pom.xml";
@@ -79,7 +79,8 @@ pipeline {
                     echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
                     artifactPath = filesByGlob[0].path;            
                 }
-                sh "sudo -S cp target/hello-world-war-1.0.0-SNAPSHOT.war /opt/tomcat/apache-tomcat-8.5.47/webapps"
+                sh "sudo -S cp target/hello-world-war-1.0.0-SNAPSHOT.war /opt/tomcat/apache-tomcat-8.5.47/webapps"*/
+                sh 'curl --upload-file target/hello-world-war-1.0.0-SNAPSHOT.war "http://tomcat:password@34.93.240.217:8082/manager/text/deploy?path=/hello&update=true"'
             }
         }
     }
