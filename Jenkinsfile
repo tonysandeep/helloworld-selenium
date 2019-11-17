@@ -15,12 +15,6 @@ pipeline {
                     sh "mvn sonar:sonar clean compile -Dtest=\\!TestRunner* -DfailIfNoTests=false -Dsonar.projectKey=testprojkey1 -Dsonar.organization=rakesh635-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=820f2c6d75600559bd4c27dbc572be2cedcf2ae6"  
             }
         }
-        stage('Test') {
-            steps {
-                echo 'Testing'
-                sh 'mvn test'
-            }
-        }
         stage('Package') {
             steps {
                 echo 'Packaging'
@@ -84,6 +78,12 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'nexusadmin', passwordVariable: 'pass', usernameVariable: 'user')]) {
                     sh 'curl --upload-file target/hello-world-war-1.0.0-SNAPSHOT.war "http://$user:$pass@34.93.240.217:8082/manager/text/deploy?path=/hello&update=true"'
                 }
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing'
+                sh 'mvn test'
             }
         }
     }
