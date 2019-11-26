@@ -107,7 +107,7 @@ pipeline {
                         [key: 'Commit', value: '<a href="${GERRIT_CHANGE_URL}">${GERRIT_PATCHSET_REVISION}</a>'],
                         [key: 'Submitter', value: '${GERRIT_PATCHSET_UPLOADER_NAME}']
                 ],
-                fileIncludePattern: '**/*cucumber-report.json',
+                fileIncludePattern: '**/*.json',
                 sortingMethod: 'ALPHABETICAL',
                 trendsLimit: 100
         }
