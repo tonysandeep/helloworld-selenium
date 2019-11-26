@@ -64,8 +64,8 @@ pipeline {
             }
         }
         stage('Deploy') {
-            steps {
-                sh 'curl --upload-file target/hello-world-war-1.0.0-SNAPSHOT.war "http://tomcat:password@35.200.166.99:8082/manager/text/deploy?path=/hello&update=true"'
+            steps { 
+                sh 'curl --upload-file target/hello-world-war-1.0.0-SNAPSHOT.war "http://tomcat:password@35.200.166.99:8081/manager/text/deploy?path=/hello2&update=true"'
                 //withCredentials([usernamePassword(credentialsId: 'nexusadmin', passwordVariable: 'pass', usernameVariable: 'user')]) {
                 //    sh 'curl --upload-file target/hello-world-war-1.0.0-SNAPSHOT.war "http://${user}:${pass}@34.93.240.217:8082/manager/text/deploy?path=/hello&update=true"'
                 //}
