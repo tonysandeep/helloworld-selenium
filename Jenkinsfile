@@ -65,7 +65,7 @@ pipeline {
         }
         stage('Deploy') {
             steps { 
-                sh 'curl --upload-file target/hello-world-war-1.0.0-SNAPSHOT.war "http://tomcat:password@35.200.166.99:8081/manager/text/deploy?path=/hello2&update=true"'
+                sh 'curl --upload-file target/hello-world-war-1.0.0-SNAPSHOT.war "http://tomcat:password@35.200.184.59:8081/manager/text/deploy?path=/hello2&update=true"'
                 //withCredentials([usernamePassword(credentialsId: 'nexusadmin', passwordVariable: 'pass', usernameVariable: 'user')]) {
                 //    sh 'curl --upload-file target/hello-world-war-1.0.0-SNAPSHOT.war "http://${user}:${pass}@34.93.240.217:8082/manager/text/deploy?path=/hello&update=true"'
                 //}
@@ -88,7 +88,7 @@ pipeline {
         // This can be http or https
         NEXUS_PROTOCOL = "http"
         // Where your Nexus is running
-        NEXUS_URL = "34.93.73.51:8081"
+        NEXUS_URL = "34.93.238.186:8081"
         // Repository where we will upload the artifact
         NEXUS_REPOSITORY = "maven-snapshots"
         // Jenkins credential id to authenticate to Nexus OSS
