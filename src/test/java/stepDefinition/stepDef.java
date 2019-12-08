@@ -37,7 +37,7 @@ public void landing_page_is_loaded() throws Throwable {
     driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
     //driver.get("http://34.93.73.51:8080/helloworld/");
-    driver.get("http://35.244.31.220:8080/helloworld/");
+    driver.get("http://35.244.31.220:8080/singlepagewebapp/");
 }
 
 @Given("^click sign in$")
