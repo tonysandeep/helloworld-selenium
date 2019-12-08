@@ -1,5 +1,5 @@
 parameter:
-  appname: helloworld
+  appname: singlepagewebapp
   deployment:
     strategy: rollingupdate
     # rollingupdate , bluegreen , canary
