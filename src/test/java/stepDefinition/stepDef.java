@@ -33,11 +33,11 @@ public void landing_page_is_loaded() throws Throwable {
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); 
     driver.get("http://34.93.73.51:8080/helloworld/");*/
     DesiredCapabilities capability = DesiredCapabilities.chrome();
-    driver = new RemoteWebDriver(new URL("http://34.93.123.206:4444/wd/hub"), capability);
+    driver = new RemoteWebDriver(new URL("http://35.200.254.176:4444/wd/hub"), capability);
     driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
     //driver.get("http://34.93.73.51:8080/helloworld/");
-    driver.get("http://35.200.184.59:8081/hello2/");
+    driver.get("http://35.244.31.220:8080/helloworld/");
 }
 
 @Given("^click sign in$")
