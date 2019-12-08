@@ -1,6 +1,6 @@
 parameter:
   appname: singlepagewebapp
   deployment:
-    strategy: rollingupdate
+    strategy: bluegreen
     # rollingupdate , bluegreen , canary
     # default is rollingupdate
