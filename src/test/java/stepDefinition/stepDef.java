@@ -35,7 +35,7 @@ public void landing_page_is_loaded() throws Throwable {
     driver = new ChromeDriver(); 
     driver.manage().window().maximize(); 
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); 
-    driver.get("http://34.93.179.229:8081/winagenttest/");*/
+    driver.get("http://34.93.179.229:8081/winagenttest/");
     DesiredCapabilities capability = DesiredCapabilities.chrome();
     //driver = new RemoteWebDriver(new URL("http://35.200.254.176:4444/wd/hub"), capability);
     driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
