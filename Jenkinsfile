@@ -111,9 +111,9 @@ pipeline {
                         [key: 'Commit', value: '<a href="${GERRIT_CHANGE_URL}">${GERRIT_PATCHSET_REVISION}</a>'],
                         [key: 'Submitter', value: '${GERRIT_PATCHSET_UPLOADER_NAME}']
                 ],
-                fileIncludePattern: '**/*.json',*/
-                sortingMethod: 'ALPHABETICAL',
-                trendsLimit: 100
+                fileIncludePattern: '**/*.json',
+               sortingMethod: 'ALPHABETICAL',
+               trendsLimit: 100
         }
         success {
             echo 'JENKINS PIPELINE SUCCESSFUL'
