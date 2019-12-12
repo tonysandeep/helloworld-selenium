@@ -1,24 +1,25 @@
 pipeline {
-    agent any
+    agent {
+        label 'winagent'
+    }
     stages {
         stage('checkout') {
             steps {
                 echo 'checkout'
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/rakesh635/helloworld-selenium.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/tonysandeep/helloworld-selenium.git']]])
             }
         }
         stage('Build') {
             steps {
                 echo 'Clean Build'
-                    sh "ls"
-                    sh "pwd"
-                    sh "mvn sonar:sonar clean compile -Dtest=\\!TestRunner* -DfailIfNoTests=false -Dsonar.projectKey=employee_jdbc -Dsonar.host.url=http://35.244.62.220/ -Dsonar.login=aac7cc7809ddc82ce0070e3f74726c71216936b6"
+				bat '"C:\\Program Files (x86)\\Maven\\apache-maven-3.6.3\\bin\\mvn" sonar:sonar clean compile -Dtest=\\!TestRunner* -DfailIfNoTests=false -Dsonar.projectKey=employee_jdbc -Dsonar.host.url=http://35.200.239.255/ -Dsonar.login=aac7cc7809ddc82ce0070e3f74726c71216936b6' 
+
             }
         }
         stage('Package') {
             steps {
                 echo 'Packaging'
-                sh 'mvn package -DskipTests'
+                bat '"C:\\Program Files (x86)\\Maven\\apache-maven-3.6.3\\bin\\mvn" package -Dmaven.test.skip=true' 
             }
         }
         stage("publish to nexus") {
@@ -65,7 +66,8 @@ pipeline {
         }
         stage('Deploy') {
             steps { 
-                sh 'curl --upload-file target/hello-world-war-1.0.0-SNAPSHOT.war "http://tomcat:password@35.200.184.59:8081/manager/text/deploy?path=/hello2&update=true"'
+                bat '"C:\\Program Files (x86)\\cUrl\\bin\\curl.exe" --upload-file target\\hello-world-war-1.0.0-SNAPSHOT.war "http://tomcat:password@34.93.179.229:8081/manager/text/deploy?path=/winagenttest&update=true"'
+                //sh 'curl --upload-file target/*.war "http://tomcat:password@35.200.184.59:8081/manager/text/deploy?path=/hello2&update=true"'
                 //withCredentials([usernamePassword(credentialsId: 'nexusadmin', passwordVariable: 'pass', usernameVariable: 'user')]) {
                 //    sh 'curl --upload-file target/hello-world-war-1.0.0-SNAPSHOT.war "http://${user}:${pass}@34.93.240.217:8082/manager/text/deploy?path=/hello&update=true"'
                 //}
@@ -74,21 +76,22 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing'
-                sh 'mvn test'
+				bat '"C:\\Program Files (x86)\\Maven\\apache-maven-3.6.3\\bin\\mvn" test'
+                //sh 'mvn test'
             }
         }
     }
-    tools {
+/*    tools {
         maven 'maven3.3.9'
         jdk 'openjdk8'
-    }
+    } */
     environment {
         // This can be nexus3 or nexus2
         NEXUS_VERSION = "nexus3"
         // This can be http or https
         NEXUS_PROTOCOL = "http"
         // Where your Nexus is running
-        NEXUS_URL = "34.93.238.186:8081"
+        NEXUS_URL = "35.200.161.61:8081"
         // Repository where we will upload the artifact
         NEXUS_REPOSITORY = "maven-snapshots"
         // Jenkins credential id to authenticate to Nexus OSS
