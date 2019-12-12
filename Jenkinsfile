@@ -22,7 +22,24 @@ pipeline {
                 bat '"C:\\Program Files (x86)\\Maven\\apache-maven-3.6.3\\bin\\mvn" package -Dmaven.test.skip=true' 
             }
         }
-        stage("publish to nexus") {
+        
+        stage('Deploy') {
+            steps { 
+                bat '"C:\\Program Files (x86)\\cUrl\\bin\\curl.exe" --upload-file target\\hello-world-war-1.0.0-SNAPSHOT.war "http://tomcat:password@34.93.179.229:8081/manager/text/deploy?path=/winagenttest&update=true"'
+                //sh 'curl --upload-file target/*.war "http://tomcat:password@35.200.184.59:8081/manager/text/deploy?path=/hello2&update=true"'
+                //withCredentials([usernamePassword(credentialsId: 'nexusadmin', passwordVariable: 'pass', usernameVariable: 'user')]) {
+                //    sh 'curl --upload-file target/hello-world-war-1.0.0-SNAPSHOT.war "http://${user}:${pass}@34.93.240.217:8082/manager/text/deploy?path=/hello&update=true"'
+                //}
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing'
+				bat '"C:\\Program Files (x86)\\Maven\\apache-maven-3.6.3\\bin\\mvn" test'
+                //sh 'mvn test'
+            }
+        }
+	    stage("publish to nexus") {
             steps {
                 script {
                     // Read POM xml file using 'readMavenPom' step , this step 'readMavenPom' is included in: https://plugins.jenkins.io/pipeline-utility-steps
@@ -64,22 +81,6 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') {
-            steps { 
-                bat '"C:\\Program Files (x86)\\cUrl\\bin\\curl.exe" --upload-file target\\hello-world-war-1.0.0-SNAPSHOT.war "http://tomcat:password@34.93.179.229:8081/manager/text/deploy?path=/winagenttest&update=true"'
-                //sh 'curl --upload-file target/*.war "http://tomcat:password@35.200.184.59:8081/manager/text/deploy?path=/hello2&update=true"'
-                //withCredentials([usernamePassword(credentialsId: 'nexusadmin', passwordVariable: 'pass', usernameVariable: 'user')]) {
-                //    sh 'curl --upload-file target/hello-world-war-1.0.0-SNAPSHOT.war "http://${user}:${pass}@34.93.240.217:8082/manager/text/deploy?path=/hello&update=true"'
-                //}
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing'
-				bat '"C:\\Program Files (x86)\\Maven\\apache-maven-3.6.3\\bin\\mvn" test'
-                //sh 'mvn test'
-            }
-        }
     }
 /*    tools {
         maven 'maven3.3.9'
@@ -101,7 +102,7 @@ pipeline {
     post {
         always {
             echo 'JENKINS PIPELINE'
-            cucumber buildStatus: 'UNSTABLE',
+            /*cucumber buildStatus: 'UNSTABLE',
                 failedFeaturesNumber: 1,
                 failedScenariosNumber: 1,
                 skippedStepsNumber: 1,
@@ -110,7 +111,7 @@ pipeline {
                         [key: 'Commit', value: '<a href="${GERRIT_CHANGE_URL}">${GERRIT_PATCHSET_REVISION}</a>'],
                         [key: 'Submitter', value: '${GERRIT_PATCHSET_UPLOADER_NAME}']
                 ],
-                fileIncludePattern: '**/*.json',
+                fileIncludePattern: '**/*.json',*/
                 sortingMethod: 'ALPHABETICAL',
                 trendsLimit: 100
         }
